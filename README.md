@@ -1,3 +1,5 @@
+AUTOR DEL PROYECTO (BAIRON SEBASTIAN ARDILA MENDOZA)
+"INDIVIDUAL"
 ✅ Objetivo General
 
 Desarrollar un servicio web SOAP que permita gestionar pacientes (CRUD) con persistencia en pacientes.xml, interfaz web y cliente SOAP.
