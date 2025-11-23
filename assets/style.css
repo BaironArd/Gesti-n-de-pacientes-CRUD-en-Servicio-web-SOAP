@@ -1,0 +1,260 @@
+/* 
+🎨 HOJA DE ESTILOS - Esquema verde/blanco minimalista 
+Diseño moderno y accesible para el sistema de gestión de pacientes
+*/
+
+/* 🎯 VARIABLES CSS - Sistema de diseño consistente */
+:root{
+  --bg:#f6fbf7;              /* 🟢 FONDO PRINCIPAL - Verde muy claro */
+  --card:#ffffff;            /* ⚪ FONDO DE TARJETAS - Blanco puro */
+  --green:#1fa15a;           /* 🟢 COLOR PRIMARIO - Verde principal */
+  --green-dark:#16894a;      /* 🟢 COLOR SECUNDARIO - Verde oscuro */
+  --muted:#6b6b6b;           /* 🔘 COLOR APAGADO - Texto secundario */
+  --shadow: rgba(0,0,0,0.08); /* 🕶️ SOMBRAS - Sutil y elegante */
+  --radius:12px;             /* 🔵 RADIO DE BORDES - Esquinas redondeadas */
+  --maxw:920px;              /* 📏 ANCHO MÁXIMO - Contenedor principal */
+  /* 🖋️ TIPOGRAFÍA - Familia de fuentes moderna */
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* 🎯 RESET BÁSICO - Box-sizing consistente para todos los elementos */
+*{box-sizing:border-box}
+html,body{height:100%}
+
+/* 💪 CUERPO PRINCIPAL - Estilos base de la página */
+body{
+  margin:0;
+  /* 🌈 FONDO DEGRADADO - Verde claro a blanco (dirección vertical) */
+  background:linear-gradient(180deg,#f6fbf7,white);
+  color:#222;                    /* 🖤 COLOR DE TEXTO PRINCIPAL - Casi negro */
+  padding:24px;                  /* 📐 ESPACIADO EXTERNO */
+  display:block;        
+  min-height:100vh;              /* 📏 ALTURA MÍNIMA - Ocupar toda la pantalla */
+}
+
+/* 🏗️ CONTENEDOR PRINCIPAL - Tarjeta central con sombra */
+.container{
+  width:100%;
+  max-width:var(--maxw);         /* 📏 LIMITAR ANCHO MÁXIMO */
+  background:var(--card);        /* ⚪ FONDO BLANCO */
+  border-radius:var(--radius);   /* 🔵 ESQUINAS REDONDEADAS */
+  box-shadow:0 8px 30px var(--shadow);  /* 🕶️ SOMBRA ELEVADA */
+  padding:28px;                  /* 📐 ESPACIADO INTERNO */
+  text-align:center;             /* 🔤 TEXTO CENTRADO POR DEFECTO */
+}
+
+/* 🎯 CABECERA - Logo, título y acciones */
+.header{
+  display:flex;
+  align-items:center;            /* 📐 ALINEACIÓN VERTICAL CENTRADA */
+  justify-content:space-between; /* ↔️ DISTRIBUCIÓN HORIZONTAL */
+  gap:12px;                      /* 📐 ESPACIO ENTRE ELEMENTOS */
+  margin-bottom:18px;            /* 📐 SEPARACIÓN INFERIOR */
+}
+
+/* 🔷 MARCA - Logo y texto identificador */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-align:left;               /* 🔤 TEXTO ALINEADO A LA IZQUIERDA */
+}
+
+/* 🎴 LOGO - Círculo con iniciales GP */
+.logo{
+  width:56px;height:56px;border-radius:10px;
+  /* 🌈 FONDO DEGRADADO - Verde principal a verde oscuro */
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:700;font-size:20px;
+  box-shadow:0 6px 18px rgba(31,161,90,0.18);  /* 🟢 SOMBRA VERDE SUTIL */
+}
+
+/* 🏷️ TÍTULO PRINCIPAL - Texto destacado */
+.title{font-size:20px;font-weight:700}
+
+/* 🔘 SUBTÍTULO - Texto secundario */
+.subtitle{color:var(--muted);font-size:13px}
+
+/* 🎯 ACCIONES - Contenedor de botones */
+.actions{
+  display:flex;
+  gap:10px;                      /* 📐 ESPACIO ENTRE BOTONES */
+}
+
+/* 🔘 BOTONES - Estilos base para todos los botones */
+.btn{
+  border:0;padding:10px 14px;border-radius:10px;
+  font-weight:600;cursor:pointer;  /* 👆 MANO AL PASAR SOBRE BOTÓN */
+  box-shadow:none;transition:all .18s ease;  /* 🔄 TRANSICIÓN SUAVE */
+  outline:none;                    /* 🚫 QUITAR OUTLINE POR DEFECTO */
+}
+
+/* 👻 BOTÓN FANTASMA - Estilo secundario/transparente */
+.btn-ghost{
+  background:transparent;
+  color:var(--green);
+  border:1px solid rgba(31,161,90,0.12)  /* 🟢 BORDE VERDE SUTIL */
+}
+
+/* 🟢 BOTÓN PRIMARIO - Acción principal */
+.btn-primary{
+  background:var(--green);
+  color:white
+}
+
+/* 🔄 HOVER BOTÓN PRIMARIO - Efecto al pasar mouse */
+.btn-primary:hover{
+  transform:translateY(-2px);      /* ⬆️ LEVANTAR LIGERAMENTE */
+  box-shadow:0 8px 20px rgba(31,161,90,0.12)  /* 🟢 SOMBRA VERDE */
+}
+
+/* 🔴 BOTÓN PELIGRO - Para acciones destructivas como eliminar */
+.btn-danger{
+  background:#ff6b6b;
+  color:white
+}
+
+/* 🎪 CONTENIDO CENTRAL - Para páginas de inicio */
+.center{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;                      /* 📐 ESPACIO ENTRE ELEMENTOS */
+  padding:18px 6px 0 6px;       /* 📐 ESPACIADO INTERNO */
+}
+
+/* 📱 CUADRICULA - Para tarjetas de acción */
+.grid{
+  display:grid;
+  /* 🔄 DISEÑO RESPONSIVO - Columnas que se adaptan al ancho */
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;                      /* 📐 ESPACIO ENTRE TARJETAS */
+  width:100%;
+}
+
+/* 🎴 TARJETAS DE ACCIÓN - Botones grandes en página de inicio */
+.card-action{
+  /* 🌈 FONDO DEGRADADO SUTIL - Verde muy tenue */
+  background:linear-gradient(180deg, rgba(31,161,90,0.06), rgba(31,161,90,0.02));
+  border:1px solid rgba(31,161,90,0.06);  /* 🟢 BORDE SUTIL VERDE */
+  padding:18px;border-radius:12px;
+  cursor:pointer;                /* 👆 INDICAR QUE ES CLICKEABLE */
+  display:flex;flex-direction:column;align-items:center;
+  gap:10px;min-height:110px;    /* 📏 ALTURA MÍNIMA CONSISTENTE */
+}
+
+/* 🏷️ TÍTULO DE TARJETA */
+.card-action h3{
+  margin:0;font-size:16px;color:var(--green-dark)  /* 🟢 COLOR VERDE OSCURO */
+}
+
+/* 🔘 DESCRIPCIÓN DE TARJETA */
+.card-action p{
+  margin:0;color:var(--muted);font-size:13px
+}
+
+/* 📝 FORMULARIOS - Estilos para formularios de entrada */
+.form{
+  text-align:left;               /* 🔤 TEXTO ALINEADO A LA IZQUIERDA */
+  max-width:720px;margin:0 auto; /* 📏 ANCHO MÁXIMO Y CENTRADO */
+}
+
+/* 📑 FILAS DE FORMULARIO - Para agrupar campos */
+.row{display:flex;gap:10px}
+
+/* 🏷️ CAMPO DE FORMULARIO - Contenedor de label + input */
+.field{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:12px;            /* 📐 SEPARACIÓN ENTRE CAMPOS */
+  flex:1                         /* 🔄 DISTRIBUCIÓN EQUITATIVA */
+}
+
+/* 🏷️ ETIQUETAS DE FORMULARIO */
+label{
+  font-size:13px;
+  color:var(--muted);            /* 🔘 COLOR SECUNDARIO */
+  margin-bottom:6px              /* 📐 SEPARACIÓN CON EL INPUT */
+}
+
+/* ⌨️ CONTROLES DE FORMULARIO - Inputs, selects, textareas */
+input[type="text"], input[type="number"], select, textarea{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e6e6e6;      /* 🔘 BORDE SUTIL GRIS */
+  background:white;
+  font-size:14px;
+  outline:none;                  /* 🚫 QUITAR OUTLINE POR DEFECTO */
+}
+
+/* 🎯 ESTADO FOCUS - Cuando el usuario selecciona un campo */
+input:focus, select:focus, textarea:focus{
+  box-shadow:0 6px 18px rgba(31,161,90,0.06);  /* 🟢 SOMBRA VERDE SUTIL */
+  border-color:var(--green)      /* 🟢 BORDE VERDE */
+}
+
+/* 📊 TABLAS - Para listado de pacientes */
+.table{
+  width:100%;
+  border-collapse:collapse;      /* 🚫 ELIMINAR ESPACIOS ENTRE BORDES */
+  margin-top:6px;
+}
+
+/* 🏷️ CELDAS DE TABLA */
+.table th, .table td{
+  padding:10px;
+  text-align:left;
+  border-bottom:1px solid #f1f1f1;  /* 🔘 LÍNEA SEPARADORA SUTIL */
+  font-size:14px
+}
+
+/* 🏷️ ENCABEZADOS DE TABLA */
+.table th{
+  color:var(--muted);            /* 🔘 COLOR SECUNDARIO */
+  font-size:13px                 /* 📏 TEXTO MÁS PEQUEÑO */
+}
+
+/* 🛠️ FILA DE ACCIONES - Para botones en tabla */
+.actions-row{
+  display:flex;
+  gap:8px;                       /* 📐 ESPACIO ENTRE BOTONES */
+  justify-content:flex-end       /* ➡️ ALINEAR A LA DERECHA */
+}
+
+/* 📱 DISEÑO RESPONSIVE - Para pantallas pequeñas (móviles) */
+@media (max-width:720px){
+  .header{
+    flex-direction:column;       /* 📱 CAMBIAR A DISPOSICIÓN VERTICAL */
+    align-items:flex-start;
+    gap:8px
+  }
+  .actions{
+    width:100%;
+    justify-content:stretch      /* 📱 BOTONES QUE OCUPAN ANCHO COMPLETO */
+  }
+  .actions .btn{
+    flex:1                       /* 📱 DISTRIBUCIÓN EQUITATIVA */
+  }
+  .row{
+    flex-direction:column        /* 📱 CAMPOS EN COLUMNA */
+  }
+}
+
+/* 👣 PIE DE PÁGINA - Información técnica */
+.footer{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:13px;
+  display:flex;
+  justify-content:space-between; /* ↔️ DISTRIBUIR EN EXTREMOS */
+  align-items:center;
+}
+
+/* 💡 NOTAS CENTRADAS - Mensajes informativos */
+.centered-note{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+}
