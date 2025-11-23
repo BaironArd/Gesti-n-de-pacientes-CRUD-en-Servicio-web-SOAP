@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+📋 ARCHIVO WSDL - CONTRATO DE SERVICIO WEB
+Define la interfaz del servicio SOAP para gestión de pacientes
+Namespace: http://localhost/pacientes
+-->
+
+<definitions 
+    xmlns="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://localhost/pacientes"
+    targetNamespace="http://localhost/pacientes">
+
+    <!-- 📊 DEFINICIÓN DE TIPOS DE DATOS - Esquemas XML para pacientes -->
+    <types>
+        <xsd:schema targetNamespace="http://localhost/pacientes">
+
+            <!-- 👤 PACIENTE SIN ID - Estructura para creación de nuevos registros -->
+            <xsd:complexType name="PacienteSinID">
+                <xsd:sequence>
+                    <xsd:element name="nombre" type="xsd:string"/>
+                    <xsd:element name="apellido" type="xsd:string"/>
+                    <xsd:element name="documento" type="xsd:string"/>
+                    <xsd:element name="edad" type="xsd:int"/>
+                    <xsd:element name="sexo" type="xsd:string"/>
+                    <xsd:element name="telefono" type="xsd:string"/>
+                    <xsd:element name="direccion" type="xsd:string"/>
+                    <xsd:element name="fecha_registro" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- 👥 PACIENTE CON ID - Estructura completa incluyendo identificador -->
+            <xsd:complexType name="Paciente">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:int"/>
+                    <xsd:element name="nombre" type="xsd:string"/>
+                    <xsd:element name="apellido" type="xsd:string"/>
+                    <xsd:element name="documento" type="xsd:string"/>
+                    <xsd:element name="edad" type="xsd:int"/>
+                    <xsd:element name="sexo" type="xsd:string"/>
+                    <xsd:element name="telefono" type="xsd:string"/>
+                    <xsd:element name="direccion" type="xsd:string"/>
+                    <xsd:element name="fecha_registro" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- 📋 LISTA DE PACIENTES - Contenedor para múltiples registros -->
+            <xsd:complexType name="PacientesList">
+                <xsd:sequence>
+                    <xsd:element name="paciente" type="tns:Paciente" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+
+    <!-- 📨 DEFINICIÓN DE MENSAJES SOAP - Request/Response para cada operación -->
+
+    <!-- ➕ CREAR PACIENTE - Recibe datos sin ID, retorna ID asignado -->
+    <message name="createPatientRequest">
+        <part name="data" type="tns:PacienteSinID"/>
+    </message>
+    <message name="createPatientResponse">
+        <part name="return" type="xsd:int"/>
+    </message>
+
+    <!-- 📋 LISTAR PACIENTES - Sin parámetros, retorna lista completa -->
+    <message name="getPatientsRequest"/>
+    <message name="getPatientsResponse">
+        <part name="return" type="tns:PacientesList"/>
+    </message>
+
+    <!-- 🔍 OBTENER PACIENTE - Recibe ID, retorna paciente específico -->
+    <message name="getPatientRequest">
+        <part name="id" type="xsd:int"/>
+    </message>
+    <message name="getPatientResponse">
+        <part name="return" type="tns:Paciente"/>
+    </message>
+
+    <!-- ✏️ ACTUALIZAR PACIENTE - Recibe paciente completo con ID, retorna estado -->
+    <message name="updatePatientRequest">
+        <part name="data" type="tns:Paciente"/>
+    </message>
+    <message name="updatePatientResponse">
+        <part name="return" type="xsd:boolean"/>
+    </message>
+
+    <!-- 🗑️ ELIMINAR PACIENTE - Recibe documento, retorna estado de eliminación -->
+    <message name="deletePatientRequest">
+        <part name="documento" type="xsd:string"/>
+    </message>
+    <message name="deletePatientResponse">
+        <part name="return" type="xsd:boolean"/>
+    </message>
+
+    <!-- 🎛️ PORT TYPE - Interfaz abstracta con todas las operaciones disponibles -->
+    <portType name="PacientesPortType">
+
+        <!-- ➕ OPERACIÓN: Crear paciente -->
+        <operation name="createPatient">
+            <input message="tns:createPatientRequest"/>
+            <output message="tns:createPatientResponse"/>
+        </operation>
+
+        <!-- 📋 OPERACIÓN: Listar todos los pacientes -->
+        <operation name="getPatients">
+            <input message="tns:getPatientsRequest"/>
+            <output message="tns:getPatientsResponse"/>
+        </operation>
+
+        <!-- 🔍 OPERACIÓN: Obtener paciente por ID -->
+        <operation name="getPatient">
+            <input message="tns:getPatientRequest"/>
+            <output message="tns:getPatientResponse"/>
+        </operation>
+
+        <!-- ✏️ OPERACIÓN: Actualizar paciente existente -->
+        <operation name="updatePatient">
+            <input message="tns:updatePatientRequest"/>
+            <output message="tns:updatePatientResponse"/>
+        </operation>
+
+        <!-- 🗑️ OPERACIÓN: Eliminar paciente por documento -->
+        <operation name="deletePatient">
+            <input message="tns:deletePatientRequest"/>
+            <output message="tns:deletePatientResponse"/>
+        </operation>
+
+    </portType>
+
+    <!-- 🔗 BINDING - Define protocolo SOAP para las operaciones -->
+    <binding name="PacientesBinding" type="tns:PacientesPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <!-- ➕ BINDING: Crear paciente -->
+        <operation name="createPatient">
+            <soap:operation soapAction="createPatient"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
+        <!-- 📋 BINDING: Listar pacientes -->
+        <operation name="getPatients">
+            <soap:operation soapAction="getPatients"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
+        <!-- 🔍 BINDING: Obtener paciente -->
+        <operation name="getPatient">
+            <soap:operation soapAction="getPatient"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
+        <!-- ✏️ BINDING: Actualizar paciente -->
+        <operation name="updatePatient">
+            <soap:operation soapAction="updatePatient"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
+        <!-- 🗑️ BINDING: Eliminar paciente -->
+        <operation name="deletePatient">
+            <soap:operation soapAction="deletePatient"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+
+    </binding>
+
+    <!-- 🌐 SERVICIO - Punto final de acceso al servicio -->
+    <service name="PacientesService">
+        <port name="PacientesPort" binding="tns:PacientesBinding">
+            <!-- 📍 URL DEL ENDPOINT - Donde está hospedado el servicio -->
+            <soap:address location="http://localhost/pacientes_soap/backend/server.php"/>
+        </port>
+    </service>
+
+</definitions>
