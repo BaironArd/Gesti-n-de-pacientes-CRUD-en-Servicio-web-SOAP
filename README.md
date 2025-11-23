@@ -1,156 +1,66 @@
-✅ Objetivo General
+# 🏥 Sistema de Gestión de Pacientes - Servicio Web SOAP
 
-Desarrollar un servicio web SOAP que permita gestionar pacientes (CRUD) con persistencia en pacientes.xml, interfaz web y cliente SOAP.
+## 👥 Autores
+- **Bairon Sebastian Ardila Mendoza**
+- **Julian Andres Parada Cuadros**
 
-🧠 Plan de Trabajo Completo
-1️⃣ Preparación del Proyecto
-| Tarea                      | Descripción                                            |
-| -------------------------- | ------------------------------------------------------ |
-| Crear carpeta del proyecto | `/GINPAC-SOAP/`                                        |
-| Crear subcarpetas          | `/backend` `/frontend` `/wsdl` `/data`                 |
-| Crear archivo XML          | `data/pacientes.xml` inicial vacío con estructura base |
-| Definir tecnología         | PHP con SoapServer y SoapClient (recomendado)          |
+## 🎯 Objetivo General
+Desarrollar un servicio web SOAP que permita gestionar pacientes (CRUD) con persistencia en XML, interfaz web y cliente SOAP.
 
-Inicial XML:
-
-<pacientes></pacientes>
-
-2️⃣ Definir el WSDL (Contrato del servicio)
-
-Ubicación: /wsdl/pacientes.wsdl
-
-El WSDL debe definir:
-✅ Tipos (datos del paciente)
-✅ Estructura de mensajes
-✅ Operaciones SOAP
-✅ Endpoint del servicio
-
-Operaciones:
-
-| Operación            | Acción            |
-| -------------------- | ----------------- |
-| `crearPaciente`      | Crear paciente    |
-| `buscarPaciente`     | Buscar por cédula |
-| `listarPacientes`    | Listar todos      |
-| `actualizarPaciente` | Modificar         |
-| `eliminarPaciente`   | Borrar            |
-
-3️⃣ Backend – Servidor SOAP
-
-Ubicación: /backend/server.php
-
-Responsabilidades:
-
-| Módulo              | Función                         |
-| ------------------- | ------------------------------- |
-| Cargar WSDL         | `SoapServer('pacientes.wsdl')`  |
-| Manejar operaciones | 5 funciones CRUD                |
-| Persistir en XML    | Leer y escribir `pacientes.xml` |
+## 📁 Estructura Actual del Proyecto
+<img width="557" height="350" alt="image" src="https://github.com/user-attachments/assets/99c4953c-aac1-42d6-8bb2-fe11b2f5f197" />
 
 
-Funciones a implementar:
+text
 
-| Función                | Archivo    | Acción                       |
-| ---------------------- | ---------- | ---------------------------- |
-| `crearPaciente()`      | server.php | Inserta nodo en XML          |
-| `buscarPaciente()`     | server.php | Devuelve paciente por cédula |
-| `listarPacientes()`    | server.php | Devuelve array de pacientes  |
-| `actualizarPaciente()` | server.php | Modifica nodo existente      |
-| `eliminarPaciente()`   | server.php | Borra nodo XML               |
+## 🛠️ Tecnologías Implementadas
+- **PHP** con SoapServer y SoapClient
+- **SOAP** con WSDL personalizado
+- **XML** para persistencia de datos
+- **HTML5 + CSS3** para interfaz web
 
+## 🔧 Funcionalidades Implementadas
 
-4️⃣ Frontend – Cliente SOAP
+### ✅ Operaciones CRUD Completas
+| Operación | Método SOAP | Archivo |
+|-----------|-------------|---------|
+| **Crear** | `createPatient()` | store.php |
+| **Listar** | `getPatients()` | list.php |
+| **Buscar** | `getPatient()` | edit.php |
+| **Actualizar** | `updatePatient()` | update.php |
+| **Eliminar** | `deletePatient()` | delete.php |
 
-Ubicación: /frontend
+## 🚀 Características del Sistema
 
-Archivos necesarios:
+### 🔄 Servicio SOAP
+- WSDL con operaciones CRUD completas
+- Cliente SOAP reutilizable en `soap_client.php`
+- Manejo de errores y validaciones
+- Persistencia en archivo XML
 
-| Archivo                | Función                                  |
-| ---------------------- | ---------------------------------------- |
-| `index.php`            | Menú principal (Inicio)                  |
-| `crear_paciente.php`   | Formulario CREAR                         |
-| `listar_pacientes.php` | Tabla LISTAR + botones Editar / Eliminar |
-| `editar_paciente.php`  | Formulario EDITAR auto relleno           |
-| `cliente.php`          | Clase SOAPClient para consumir métodos   |
+### 🎨 Interfaz Web
+- Diseño responsive con CSS personalizado
+- Formularios para crear y editar pacientes
+- Listado en tabla con acciones
+- Confirmación antes de eliminar
 
+## 📊 Estructura de Datos
+Los pacientes se almacenan en `pacientes.xml` con:
+- ID automático
+- Nombre, apellido, documento
+- Edad, sexo, teléfono, dirección
+- Fecha de registro automática
 
-Cada archivo debe:
+## 🖥️ Instalación
+1. Clonar el repositorio
+2. Configurar servidor web (Apache/Laragon)
+3. Acceder a `frontend/index.php`
 
-✅ Conectarse al WSDL
-✅ Llamar operación SOAP correspondiente
-✅ Mostrar resultados con mensajes claros
-✅ Tener botón Volver al Inicio
+## 🔗 Endpoints
+- **Servicio SOAP:** `http://localhost/pacientes_soap/backend/server.php`
+- **WSDL:** `http://localhost/pacientes_soap/backend/pacientes.wsdl`
 
-5️⃣ Flujo de la Interfaz
-| Vista              | Acción                 | Método SOAP                             |
-| ------------------ | ---------------------- | --------------------------------------- |
-| Inicio             | Menú navegación        | —                                       |
-| Registrar paciente | Formulario -> Submit   | `crearPaciente`                         |
-| Ver pacientes      | Tabla dinámica         | `listarPacientes`                       |
-| Editar             | Form cargado -> Submit | `buscarPaciente` + `actualizarPaciente` |
-| Eliminar           | Botón + confirmación   | `eliminarPaciente`                      |
+---
 
-
-6️⃣ Diseño (UI/UX)
-
-📌 Requerido:
-
-HTML + CSS limpio (no solo HTML puro)
-
-Botones, tablas, formularios ordenados
-
-Botón Volver al Inicio en todas las vistas
-
-Alert JS en eliminación
-
-Recomendación: Bootstrap o Tailwind para mejor presentación.
-
-7️⃣ Pruebas
-| Prueba          | Validación                |
-| --------------- | ------------------------- |
-| Crear paciente  | Aparece en XML            |
-| Buscar paciente | Datos correctos           |
-| Listar          | Muestra todos             |
-| Editar          | Cambios reflejados en XML |
-| Eliminar        | Nodo desaparece del XML   |
-
-8️⃣ Documentación
-
-Incluye:
-✅ Explicación SOAP
-✅ Flujo Cliente → WSDL → Servidor → XML
-✅ Screenshots
-✅ Diagrama básico (opcional)
-✅ Comentarios en código
-
-9️⃣ Preparación de la Sustentación
-
-Debes explicar:
-
-| Tema             | Qué decir                            |
-| ---------------- | ------------------------------------ |
-| ¿Qué es SOAP?    | Protocolo basado en XML/WSDL         |
-| Por qué no REST  | Se pidió SOAP académico              |
-| Flujo            | Cliente → SOAP → WSDL → Server → XML |
-| CRUD funcionando | Demostración en vivo                 |
-| Quién hizo qué   | Trabajo colaborativo                 |
-
-
-Tu parte: diagramas + flujo + conclusiones ✅
-
-📂 Mapa Final del Proyecto
-GINPAC-SOAP/
- ├── data/
- │    └── pacientes.xml
- ├── wsdl/
- │    └── pacientes.wsdl
- ├── backend/
- │    └── server.php
- ├── frontend/
- │    ├── index.php
- │    ├── cliente.php
- │    ├── crear_paciente.php
- │    ├── listar_pacientes.php
- │    └── editar_paciente.php
- └── README.pdf o documentación 
-<img width="189" height="262" alt="image" src="https://github.com/user-attachments/assets/75015be2-c365-4908-9bb2-05c24d0a246b" />
+## 📝 Nota de Desarrollo
+Proyecto colaborativo desarrollado por **Bairon** y **Julian** para la implementación de servicios web SOAP con PHP.
