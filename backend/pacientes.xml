@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+🏥 BASE DE DATOS XML DE PACIENTES
+Archivo de almacenamiento persistente para todos los registros de pacientes
+Estructura: Contenedor principal <pacientes> con múltiples <paciente>
+-->
+<!-- 
+📊 ESTRUCTURA GENERAL DEL ARCHIVO:
+- <pacientes>: Elemento raíz que contiene todos los registros
+- <paciente>: Cada registro individual con sus datos
+- Campos obligatorios: id, nombre, apellido, documento, edad, sexo, fecha_registro
+- Campos opcionales: telefono, direccion (pueden estar vacíos)
+
+🔍 CARACTERÍSTICAS DE LOS DATOS:
+- IDs: Secuenciales pero pueden tener saltos (asignación automática)
+- Documentos: Únicos por paciente, usado como clave para eliminación
+- Fechas: Formato YYYY-MM-DD (estándar ISO)
+- Edades: Validadas entre 0-150 años
+- Sexos: Solo valores M, F, O permitidos
+
+💾 MECANISMO DE PERSISTENCIA:
+- Este archivo es leído/escrito directamente por el servidor SOAP
+- Se usa DOMDocument para formateo con indentación
+- Backup recomendado antes de operaciones críticas
+-->
+<pacientes>
+  <paciente>
+    <id>11</id>
+    <nombre>parada</nombre>
+    <apellido>parada</apellido>
+    <documento>1005053883</documento>
+    <edad>43</edad>
+    <sexo>F</sexo>
+    <telefono>1625374</telefono>
+    <direccion>Calle 12</direccion>
+    <fecha_registro>2025-11-19</fecha_registro>
+  </paciente>
+  <paciente>
+    <id>12</id>
+    <nombre>bairon</nombre>
+    <apellido>ardila</apellido>
+    <documento>1091356068</documento>
+    <edad>20</edad>
+    <sexo>M</sexo>
+    <telefono>3204413320</telefono>
+    <direccion>Calle 12 av 3ra</direccion>
+    <fecha_registro>2025-11-23</fecha_registro>
+  </paciente>
+</pacientes>
